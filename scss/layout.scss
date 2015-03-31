@@ -18,54 +18,74 @@
         border: 0;
         margin: 0;
         height: 100%;
-
         & > div {
-        	width: 15em;
-        	margin-left: $leading;
-        	position: absolute;
-        	top: 50%;
-        	transform: translateY(-50%);
+            width: 15em;
+            margin-left: $leading;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
     }
     #main {
         height: 100%;
         margin-left: 15em + $leading;
         & > div {
-            min-height: 100%;
+            height: 100%;
+            min-height: 25em;
             position: relative;
         }
+        .pageup,
         .pagedown {
+        		opacity: 0;
+        		transition: opacity .3s ease;
         		display: block;
             position: absolute;
-            bottom: 1em;
             left: 50%;
             transform: translateX(-50%);
-            h1 {
-            		margin-bottom: 0;
-            }
             a {
-                font-weight: 300;
                 color: #333;
                 text-decoration: none;
             }
         }
+        .pageup {
+            top: 1em;
+        }
+        .pagedown {
+            bottom: 1em;
+        }
+        .page:hover {
+        		.pageup, .pagedown {
+        				opacity: 1;
+        		}
+        }
     }
     .centered {
         position: absolute;
-        top: 50%;
+        top: 45%;
         left: 50%;
-        transform: translate(-50%, -50%)
+        transform: translate(-50%, -50%);
+        width: 100%;
+    }
+    #skills {
+        ul {
+            width: 33%;
+        }
+    }
+    @media (max-height: 25em) {
+        #main {
+            .pageup, .pagedown {
+                display: none;
+            }
+        }
     }
 }
 /* 9. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)
  * ---------------------------------------------------------------------------------------- */
 
 @media screen and (min-width: $daddy_bear_max_width + 2 * $leading) {
-    #container {
-    }
-    header {
-    }
+    #container {}
+    header {}
     #main {
-    	margin-left: 15em + 3 * $leading;
+        margin-left: 15em + 3 * $leading;
     }
 }
