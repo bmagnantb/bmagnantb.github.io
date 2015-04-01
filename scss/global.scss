@@ -284,6 +284,10 @@ h6 {
         list-style: none;
         margin: 0 auto;
     }
+    a {
+        color: #333;
+        text-decoration: none;
+    }
 }
 
 header {
@@ -324,11 +328,13 @@ header {
         margin: 0 auto 1em;
     }
 }
+
 #about {
-		li {
-				margin-bottom: .2em;
-		}
+    li {
+        margin-bottom: .2em;
+    }
 }
+
 #skills {
     .centered {
         & > div {
@@ -349,6 +355,24 @@ header {
             margin-bottom: $leading / 4;
         }
     }
+}
+
+#projects {
+		li {
+				margin-bottom: $leading * 1.5;
+		}
+		input {
+				display: none;
+		}
+		h4 {
+				margin-bottom: .5em;
+		}
+		img {
+				border: 1px solid #ccc;
+		}
+		p a {
+				font-weight: 600;
+		}
 }
 
 .pageup,

@@ -42,10 +42,6 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            a {
-                color: #333;
-                text-decoration: none;
-            }
         }
         .pageup {
             top: 1em;
@@ -71,12 +67,71 @@
             width: 33%;
         }
     }
+    #projects {
+    		.centered {
+    				top: 10%;
+    				transform: translateX(-50%);
+    		}
+    		img {
+    				max-height: 0;
+    				transition: max-height .4s ease;
+    		}
+    		h6, p {
+    				display: none;
+    				opacity: 0;
+    		}
+    		li {
+    				margin-bottom: 0;
+    		}
+    		input:checked {
+    				& ~ img {
+    						max-height: 20em;
+    				}
+    				& ~ h6, & ~ p {
+    						display: block;
+    						opacity: 1;
+    				}
+    				& ~ p {
+    						margin-bottom: $leading * 2;
+    				}
+    		}
+    }
     @media (max-height: 25em) {
         #main {
             .pageup, .pagedown {
                 display: none;
             }
         }
+        #projects {
+        		img {
+        				max-height: none;
+        		}
+        		h6, p {
+        				display: block;
+        				opacity: 1;
+        		}
+        		li {
+        				margin-bottom: $leading * 2;
+        		}
+        		input:checked {
+        				& ~ img {
+        						max-height: none
+        				}
+        				& ~ p {
+        						margin-bottom: 0;
+        				}
+        		}
+        }
+    }
+    @media (max-height: 30em) {
+    		header {
+    				position: absolute;
+    				& > div {
+    					position: static;
+    					padding-top: 1em;
+    					transform: none;
+    				}
+    		}
     }
 }
 /* 9. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)

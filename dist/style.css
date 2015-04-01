@@ -143,6 +143,9 @@ h6 {
   #container ul {
     list-style: none;
     margin: 0 auto; }
+  #container a {
+    color: #333;
+    text-decoration: none; }
 
 header {
   border-bottom: 1px solid #999;
@@ -187,6 +190,17 @@ header {
     margin-bottom: 0; }
   #skills ul h4 {
     margin-bottom: 0.4045em; }
+
+#projects li {
+  margin-bottom: 2.427em; }
+#projects input {
+  display: none; }
+#projects h4 {
+  margin-bottom: .5em; }
+#projects img {
+  border: 1px solid #ccc; }
+#projects p a {
+  font-weight: 600; }
 
 .pageup, .pagedown {
   display: none; }
@@ -245,9 +259,6 @@ header {
       -webkit-transform: translateX(-50%);
           -ms-transform: translateX(-50%);
               transform: translateX(-50%); }
-      #main .pageup a, #main .pagedown a {
-        color: #333;
-        text-decoration: none; }
     #main .pageup {
       top: 1em; }
     #main .pagedown {
@@ -264,9 +275,50 @@ header {
     width: 100%; }
   #skills ul {
     width: 33%; }
+  #projects .centered {
+    top: 10%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%); }
+  #projects img {
+    max-height: 0;
+    -webkit-transition: max-height .4s ease;
+            transition: max-height .4s ease; }
+  #projects h6, #projects p {
+    display: none;
+    opacity: 0; }
+  #projects li {
+    margin-bottom: 0; }
+  #projects input:checked ~ img {
+    max-height: 20em; }
+  #projects input:checked ~ h6, #projects input:checked ~ p {
+    display: block;
+    opacity: 1; }
+  #projects input:checked ~ p {
+    margin-bottom: 3.236em; }
   @media (max-height: 25em) {
     #main .pageup, #main .pagedown {
-      display: none; } } }
+      display: none; }
+    #projects img {
+      max-height: none; }
+    #projects h6, #projects p {
+      display: block;
+      opacity: 1; }
+    #projects li {
+      margin-bottom: 3.236em; }
+    #projects input:checked ~ img {
+      max-height: none; }
+    #projects input:checked ~ p {
+      margin-bottom: 0; } }
+  @media (max-height: 30em) {
+    header {
+      position: absolute; }
+      header > div {
+        position: static;
+        padding-top: 1em;
+        -webkit-transform: none;
+            -ms-transform: none;
+                transform: none; } } }
 
 /* 9. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)
  * ---------------------------------------------------------------------------------------- */
