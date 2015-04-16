@@ -1,5 +1,5 @@
-@import url("http://fonts.googleapis.com/css?family=Oswald:400,300,700");
-@import url("http://fonts.googleapis.com/css?family=Lora:400,700,400italic");
+@import url("//fonts.googleapis.com/css?family=Oswald:400,300,700");
+@import url("//fonts.googleapis.com/css?family=Lora:400,700,400italic");
 /* Goldilocks Approach to Responsive Web Design Boilerplate
  *
  * Author: Design by Front - @designbyfront
@@ -241,7 +241,15 @@ header {
       top: 50%;
       -webkit-transform: translateY(-50%);
           -ms-transform: translateY(-50%);
-              transform: translateY(-50%); }
+              transform: translateY(-50%);
+      padding: 1em 0; }
+  .responsive-header > div {
+    position: static;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none; }
+  .responsive-header.scrolled {
+    position: fixed; }
   #main {
     height: 100%;
     margin-left: 16.618em; }
@@ -250,6 +258,7 @@ header {
       min-height: 25em;
       position: relative; }
     #main .pageup, #main .pagedown {
+      cursor: pointer;
       opacity: 0;
       -webkit-transition: opacity .3s ease;
               transition: opacity .3s ease;
@@ -260,7 +269,7 @@ header {
           -ms-transform: translateX(-50%);
               transform: translateX(-50%); }
     #main .pageup {
-      top: 1em; }
+      top: 0; }
     #main .pagedown {
       bottom: 1em; }
     #main .page:hover .pageup, #main .page:hover .pagedown {
@@ -296,7 +305,7 @@ header {
     opacity: 1; }
   #projects input:checked ~ p {
     margin-bottom: 3.236em; }
-  @media (max-height: 25em) {
+  @media (max-height: 26em) {
     #main .pageup, #main .pagedown {
       display: none; }
     #projects img {
@@ -309,16 +318,7 @@ header {
     #projects input:checked ~ img {
       max-height: none; }
     #projects input:checked ~ p {
-      margin-bottom: 0; } }
-  @media (max-height: 30em) {
-    header {
-      position: absolute; }
-      header > div {
-        position: static;
-        padding-top: 1em;
-        -webkit-transform: none;
-            -ms-transform: none;
-                transform: none; } } }
+      margin-bottom: 0; } } }
 
 /* 9. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)
  * ---------------------------------------------------------------------------------------- */

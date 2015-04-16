@@ -3,144 +3,158 @@
 
 @import "bear_defaults";
 @media screen and (min-width: $mummy_bear_max_width + 2 * $leading) {
-    #container {
-        padding: 0 $leading;
-        margin: 0 auto;
-        max-width: $daddy_bear_max_width;
-        height: 100%;
-    }
-    header {
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: $daddy_bear_max_width;
-        border: 0;
-        margin: 0;
-        height: 100%;
-        & > div {
-            width: 15em;
-            margin-left: $leading;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    }
-    #main {
-        height: 100%;
-        margin-left: 15em + $leading;
-        & > div {
-            height: 100%;
-            min-height: 25em;
-            position: relative;
-        }
-        .pageup,
-        .pagedown {
-        		opacity: 0;
-        		transition: opacity .3s ease;
-        		display: block;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .pageup {
-            top: 1em;
-        }
-        .pagedown {
-            bottom: 1em;
-        }
-        .page:hover {
-        		.pageup, .pagedown {
-        				opacity: 1;
-        		}
-        }
-    }
-    .centered {
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-    }
-    #skills {
-        ul {
-            width: 33%;
-        }
-    }
-    #projects {
-    		.centered {
-    				top: 10%;
-    				transform: translateX(-50%);
-    		}
-    		img {
-    				max-height: 0;
-    				transition: max-height .4s ease;
-    		}
-    		h6, p {
-    				display: none;
-    				opacity: 0;
-    		}
-    		li {
-    				margin-bottom: 0;
-    		}
-    		input:checked {
-    				& ~ img {
-    						max-height: 20em;
-    				}
-    				& ~ h6, & ~ p {
-    						display: block;
-    						opacity: 1;
-    				}
-    				& ~ p {
-    						margin-bottom: $leading * 2;
-    				}
-    		}
-    }
-    @media (max-height: 25em) {
-        #main {
-            .pageup, .pagedown {
-                display: none;
-            }
-        }
-        #projects {
-        		img {
-        				max-height: none;
-        		}
-        		h6, p {
-        				display: block;
-        				opacity: 1;
-        		}
-        		li {
-        				margin-bottom: $leading * 2;
-        		}
-        		input:checked {
-        				& ~ img {
-        						max-height: none
-        				}
-        				& ~ p {
-        						margin-bottom: 0;
-        				}
-        		}
-        }
-    }
-    @media (max-height: 30em) {
-    		header {
-    				position: absolute;
-    				& > div {
-    					position: static;
-    					padding-top: 1em;
-    					transform: none;
-    				}
-    		}
-    }
+	#container {
+		padding: 0 $leading;
+		margin: 0 auto;
+		max-width: $daddy_bear_max_width;
+		height: 100%;
+	}
+	header {
+		position: fixed;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+		max-width: $daddy_bear_max_width;
+		border: 0;
+		margin: 0;
+		height: 100%;
+		& > div {
+			width: 15em;
+			margin-left: $leading;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			padding: 1em 0;
+		}
+	}
+	.responsive-header {
+		& > div {
+			position: static;
+			transform: none;
+		}
+	}
+	.responsive-header.scrolled {
+		position: fixed;
+	}
+	#main {
+		height: 100%;
+		margin-left: 15em + $leading;
+		& > div {
+			height: 100%;
+			min-height: 25em;
+			position: relative;
+		}
+		.pageup,
+		.pagedown {
+			cursor: pointer;
+			opacity: 0;
+			transition: opacity .3s ease;
+			display: block;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+		.pageup {
+			top: 0;
+		}
+		.pagedown {
+			bottom: 1em;
+		}
+		.page:hover {
+			.pageup, .pagedown {
+				opacity: 1;
+			}
+		}
+	}
+	.centered {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+	}
+	#skills {
+		ul {
+			width: 33%;
+		}
+	}
+	#projects {
+		.centered {
+			top: 10%;
+			transform: translateX(-50%);
+		}
+		img {
+			max-height: 0;
+			transition: max-height .4s ease;
+		}
+		h6,
+		p {
+			display: none;
+			opacity: 0;
+		}
+		li {
+			margin-bottom: 0;
+		}
+		input:checked {
+			& ~ img {
+				max-height: 20em;
+			}
+			& ~ h6,
+			& ~ p {
+				display: block;
+				opacity: 1;
+			}
+			& ~ p {
+				margin-bottom: $leading * 2;
+			}
+		}
+	}
+	@media (max-height: 26em) {
+		#main {
+			.pageup, .pagedown {
+				display: none;
+			}
+		}
+		#projects {
+			img {
+				max-height: none;
+			}
+			h6,
+			p {
+				display: block;
+				opacity: 1;
+			}
+			li {
+				margin-bottom: $leading * 2;
+			}
+			input:checked {
+				& ~ img {
+					max-height: none
+				}
+				& ~ p {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+	@media (max-height: 30em) {
+		// header {
+		// 		position: absolute;
+		// 		& > div {
+		// 			position: static;
+		// 			padding-top: 1em;
+		// 			transform: none;
+		// 		}
+		// }
+	}
 }
 /* 9. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)
  * ---------------------------------------------------------------------------------------- */
 
 @media screen and (min-width: $daddy_bear_max_width + 2 * $leading) {
-    #container {}
-    header {}
-    #main {
-        margin-left: 15em + 3 * $leading;
-    }
+	#container {}
+	header {}
+	#main {
+		margin-left: 15em + 3 * $leading;
+	}
 }

@@ -1,11 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-"use strict";
+"use strict";function app(){document.body.style.opacity=1,setScroll(document.querySelector("#about .pagedown span"),document.querySelector("#skills")),setScroll(document.querySelector("#skills .pageup span"),document.querySelector("#about")),setScroll(document.querySelector("#skills .pagedown span"),document.querySelector("#projects")),setScroll(document.querySelector("#projects .pageup span"),document.querySelector("#skills")),scrollTop=document.body.scrollTop,document.querySelector("header > div").style.marginTop="0px",calcHeader(),document.addEventListener("scroll",calcHeaderThrottled),window.addEventListener("resize",calcHeaderThrottled)}function setScroll(e,r){e.addEventListener("click",function(){Velocity(r,"scroll",{duration:600,easing:"ease"})})}function calcHeaderThrottled(e){running===!1&&(running=!0,requestAnimationFrame(function(){calcHeader(e),running=!1}))}function calcHeader(e){!headerClasses.contains("responsive-header")&&headerDiv.scrollHeight>=window.innerHeight?headerClasses.add("responsive-header"):headerDiv.scrollHeight<=window.innerHeight&&(headerClasses.remove("responsive-header"),headerDiv.style.marginTop="0px"),headerClasses.contains("responsive-header")&&(scroll=document.body.scrollTop-scrollTop,headerDivMargin=headerDiv.style.marginTop.substring(0,headerDiv.style.marginTop.length-2),scroll>0&&headerDivMargin<headerDiv.scrollHeight-window.innerHeight?headerDiv.style.marginTop=Math.abs(headerDivMargin-scroll)<=headerDiv.scrollHeight-window.innerHeight?headerDivMargin-scroll+"px":-(headerDiv.scrollHeight-window.innerHeight)+"px":0>scroll&&0>headerDivMargin&&(headerDiv.style.marginTop=0>=headerDivMargin-scroll?headerDivMargin-scroll+"px":"0px")),scrollTop=document.body.scrollTop}window.onload=app;var running=!1,scrollTop=0,header=document.querySelector("header"),headerDiv=document.querySelector("header > div"),headerClasses=header.classList,scroll=document.body.scrollTop-scrollTop,headerDivMargin;
 
-window.onload = app;
-
-function app() {
-
-  document.body.style.opacity = 1;
-}
 
 },{}]},{},[1]);

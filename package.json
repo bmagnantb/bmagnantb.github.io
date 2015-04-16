@@ -3,30 +3,16 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --compilers js:babel/register ./js/test/test.js; echo '------tested------'",
-    "preinstall": "rm -rf node_modules",
-    "postinstall": "[ ! -d scss ] && mkdir scss && touch ./scss/style.scss; [ ! -d dist ] && mkdir dist && touch ./dist/style.css && touch ./dist/app.js; [ ! -d js ] && mkdir js && touch ./js/app.js; [ ! -d js/test ] && mkdir js/test && touch ./js/test/test.js; [ ! -d server.js ] && touch server.js; [ ! -d index.html ] && touch index.html; npm run css:install; echo 'dir/files created'; npm run ignores",
-    "ignores": "echo 'node_modules' > .gitignore; echo '.DS_Store' >> .gitignore; echo 'bower_components' >> .gitignore; echo 'npm_debug' >> .gitignore",
+    "test": "mocha ./js/test/test.js; echo '------tested------'",
     "start": "node server.js & npm run watch",
     "watch": "parallelshell 'npm run watch:css' 'npm run watchify:js'",
     "watch:css": "watch 'npm run build:css' ./scss/",
-    "watchify:js": "watchify ./js/app.js --extension=.jsx -t babelify -o ./dist/app.js -v",
-    "build:css": "node ./node_modules/.bin/node-sass ./scss/style.scss ./dist/style.css; autoprefixer ./dist/style.css; csso ./dist/style.css ./dist/style.min.css; echo '------sassy------'",
+    "watchify:js": "watchify ./js/app.js -t uglifyify -o ./dist/app.js -v",
+    "build:css": "node-sass ./scss/style.scss ./dist/style.css; autoprefixer ./dist/style.css; csso ./dist/style.css ./dist/style.min.css; echo '------sassy------'",
     "env": "env"
   },
   "dependencies": {
-    "express": "latest",
-    "parallelshell": "latest",
-    "watch": "latest",
-    "watchify": "latest",
-    "uglifyify": "latest",
-    "babelify": "latest",
-    "mocha": "latest",
-    "chai": "latest",
-    "jquery": "latest",
-    "modernizr": "latest",
-    "node-sass": "latest",
-    "csso": "latest"
+    "express": "latest"
   },
   "repository": {
     "type": "git",
@@ -45,6 +31,12 @@
   },
   "homepage": "https://github.com/bmagnantb/portfolio",
   "devDependencies": {
-    "autoprefixer": "^5.1.0"
+    "autoprefixer": "^5.1.0",
+    "csso": "^1.3.11",
+    "node-sass": "^2.1.1",
+    "parallelshell": "^1.1.1",
+    "uglifyify": "^3.0.1",
+    "watch": "^0.16.0",
+    "watchify": "^3.1.1"
   }
 }
