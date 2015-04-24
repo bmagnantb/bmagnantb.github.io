@@ -358,21 +358,39 @@ header {
 }
 
 #projects {
-		li {
-				margin-bottom: $leading * 1.5;
-		}
-		input {
-				display: none;
-		}
-		h4 {
-				margin-bottom: .5em;
-		}
-		img {
-				border: 1px solid #ccc;
-		}
-		p a {
-				font-weight: 600;
-		}
+    li {
+        margin-bottom: $leading * 1.5;
+    }
+    img {
+        display: block;
+    }
+    input {
+        display: none;
+    }
+    h4 {
+        margin-bottom: .5em;
+        position: relative;
+        a {
+            position: absolute;
+            top: 50%;
+            transform: translate(.2em, -35%);
+            color: #666;
+            font-size: .8em;
+            &:hover {
+                color: #000;
+            }
+        }
+    }
+    p {
+        a {
+            font-weight: 600;
+        }
+        span {
+            font-size: .9em;
+            color: #555;
+            font-style: italic;
+        }
+    }
 }
 
 .pageup,

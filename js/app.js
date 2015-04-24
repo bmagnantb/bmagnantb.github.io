@@ -33,6 +33,7 @@ function setScroll(scrollFrom, scrollTo) {
 
 
 var running = false
+
 function calcHeaderThrottled(e) {
 
 	if (running === false) {

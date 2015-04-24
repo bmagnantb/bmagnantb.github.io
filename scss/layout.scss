@@ -42,6 +42,7 @@
 		& > div {
 			height: 100%;
 			min-height: 25em;
+			margin-bottom: 0;
 			position: relative;
 		}
 		.pageup,
@@ -50,12 +51,13 @@
 			opacity: 0;
 			transition: opacity .3s ease;
 			display: block;
+			padding: 0 .5em;
 			position: absolute;
 			left: 50%;
 			transform: translateX(-50%);
 		}
 		.pageup {
-			top: 0;
+			top: 1em;
 		}
 		.pagedown {
 			bottom: 1em;
@@ -83,41 +85,73 @@
 			top: 10%;
 			transform: translateX(-50%);
 		}
+		li {
+			margin: 2.5em 0;
+		}
 		img {
+			border: 1px solid #ccc;
 			max-height: 0;
 			transition: max-height .4s ease;
+		}
+		h4 {
+			margin: .3em 0;
+			a {
+				transform: translate(-.3em, -35%);
+				opacity: 0;
+				transition: opacity .3s ease;
+			}
+		}
+		label {
+			padding: .1em .5em;
+			border: 1px solid #ccc;
+			border-radius: .1em;
+			transition: border .1s ease;
+			cursor: pointer;
 		}
 		h6,
 		p {
 			display: none;
 			opacity: 0;
 		}
-		li {
-			margin-bottom: 0;
-		}
 		input:checked {
 			& ~ img {
 				max-height: 20em;
+				margin-top: .7em;
 			}
 			& ~ h6,
 			& ~ p {
 				display: block;
 				opacity: 1;
 			}
+			& ~ h4 {
+				label {
+					border: 0;
+					cursor: auto;
+				}
+				a {
+					opacity: 1;
+					transition: opacity .1s ease;
+				}
+			}
 			& ~ p {
-				margin-bottom: $leading * 2;
 			}
 		}
 	}
-	@media (max-height: 26em) {
+	@media (max-height: 30em) {
 		#main {
 			.pageup, .pagedown {
 				display: none;
 			}
 		}
+	}
+	@media (max-height: 27em) {
 		#projects {
 			img {
 				max-height: none;
+			}
+			label {
+				border: 0;
+				cursor: auto;
 			}
 			h6,
 			p {
@@ -136,16 +170,6 @@
 				}
 			}
 		}
-	}
-	@media (max-height: 30em) {
-		// header {
-		// 		position: absolute;
-		// 		& > div {
-		// 			position: static;
-		// 			padding-top: 1em;
-		// 			transform: none;
-		// 		}
-		// }
 	}
 }
 /* 9. CUSTOM LAYOUT & TYPOGRAPHY (Daddy bear)
