@@ -12,7 +12,7 @@
     "env": "env"
   },
   "dependencies": {
-    "express": "latest"
+    "express": "^4.12.3"
   },
   "repository": {
     "type": "git",
