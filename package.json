@@ -7,7 +7,7 @@
     "start": "node server.js & npm run watch",
     "watch": "parallelshell 'npm run watch:css' 'npm run watchify:js'",
     "watch:css": "watch 'npm run build:css' ./scss/",
-    "watchify:js": "watchify ./js/app.js -t uglifyify -o ./dist/app.js -v",
+    "watchify:js": "watchify ./js/app.js -t babelify -t uglifyify -o ./dist/app.js -v",
     "build:css": "node-sass ./scss/style.scss ./dist/style.min.css; autoprefixer ./dist/style.min.css; csso ./dist/style.min.css ./dist/style.min.css; echo '------sassy------'",
     "env": "env"
   },
@@ -23,11 +23,13 @@
   "homepage": "https://github.com/bmagnantb/portfolio",
   "devDependencies": {
     "autoprefixer": "^5.1.0",
+    "babelify": "^6.1.1",
     "csso": "^1.3.11",
     "express": "^4.12.3",
     "node-sass": "^2.1.1",
     "parallelshell": "^1.1.1",
     "uglifyify": "^3.0.1",
+    "velocity-animate": "^1.2.2",
     "watch": "^0.16.0",
     "watchify": "^3.1.1"
   }
