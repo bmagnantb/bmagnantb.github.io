@@ -8,21 +8,12 @@
     "watch": "parallelshell 'npm run watch:css' 'npm run watchify:js'",
     "watch:css": "watch 'npm run build:css' ./scss/",
     "watchify:js": "watchify ./js/app.js -t uglifyify -o ./dist/app.js -v",
-    "build:css": "node-sass ./scss/style.scss ./dist/style.css; autoprefixer ./dist/style.css; csso ./dist/style.css ./dist/style.min.css; echo '------sassy------'",
+    "build:css": "node-sass ./scss/style.scss ./dist/style.min.css; autoprefixer ./dist/style.min.css; csso ./dist/style.min.css ./dist/style.min.css; echo '------sassy------'",
     "env": "env"
-  },
-  "dependencies": {
-    "express": "^4.12.3"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/bmagnantb/portfolio.git"
-  },
-  "browserify": {
-    "extensions": [
-      ".js",
-      ".jsx"
-    ]
   },
   "author": "Ben Magnant Brown",
   "license": "ISC",
@@ -33,6 +24,7 @@
   "devDependencies": {
     "autoprefixer": "^5.1.0",
     "csso": "^1.3.11",
+    "express": "^4.12.3",
     "node-sass": "^2.1.1",
     "parallelshell": "^1.1.1",
     "uglifyify": "^3.0.1",

@@ -368,17 +368,22 @@ header {
         display: none;
     }
     h4 {
+        margin-top: .5em;
         margin-bottom: .5em;
         position: relative;
         a {
             position: absolute;
             top: 50%;
-            transform: translate(.2em, -35%);
+            transform: translateY(-35%);
             color: #666;
             font-size: .8em;
             &:hover {
                 color: #000;
             }
+        }
+
+        a:nth-of-type(2) {
+            margin-left: 1.3em;
         }
     }
     p {

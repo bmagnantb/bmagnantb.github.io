@@ -1,5 +1,7 @@
 "use strict"
 
+var Velocity = require('velocity-animate')
+
 window.onload = app
 
 function app() {

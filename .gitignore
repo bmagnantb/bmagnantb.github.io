@@ -1,5 +1,4 @@
 node_modules
-modules_other
 .DS_Store
 bower_components/golidlocks-approach-sass
 bower_components/modernizr
