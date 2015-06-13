@@ -47,7 +47,7 @@
 		}
 		.pageup,
 		.pagedown {
-			opacity: .1;
+			opacity: .4;
 			transition: opacity .3s ease;
 			display: block;
 			padding: 0 .5em;
@@ -85,7 +85,7 @@
 			}
 		}
 		.pageup:hover, .pagedown:hover {
-			opacity: 1;
+			opacity: .8;
 		}
 	}
 	.centered {
