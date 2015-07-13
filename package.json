@@ -8,7 +8,7 @@
     "watch": "parallelshell 'npm run watch:css' 'npm run watchify:js'",
     "watch:css": "watch 'npm run build:css' ./scss/",
     "watchify:js": "watchify ./js/app.js -t babelify -t uglifyify -o ./dist/app.js -v",
-    "build:css": "node-sass ./scss/style.scss ./dist/style.min.css; autoprefixer ./dist/style.min.css; csso ./dist/style.min.css ./dist/style.min.css; echo '------sassy------'",
+    "build:css": "node-sass ./scss/style.scss ./css/style.css; autoprefixer ./css/style.css; csso ./css/style.css ./dist/style.min.css; echo '------sassy------'",
     "env": "env"
   },
   "repository": {

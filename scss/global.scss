@@ -275,6 +275,11 @@ h6 {
 /* 6. CUSTOM LAYOUT & TYPOGRAPHY (Baby bear)
  * ---------------------------------------------------------------------------------------- */
 
+#mobile-check {
+    display: none;
+    opacity: 1;
+}
+
 #container {
     padding: 0 $leading / 2;
     max-width: $baby_bear_max_width;
@@ -290,12 +295,18 @@ h6 {
     }
 }
 
+.invisible {
+    opacity: 0;
+}
+
 header {
     border-bottom: 1px solid #999;
-    margin: 1em 0 0;
+    margin: 2em 0 0;
+    padding-bottom: .5em;
+    transition: opacity 1s ease;
     img {
         max-width: 15em;
-        margin-bottom: 1em;
+        margin: 1em 0;
     }
     h4 {
         margin-bottom: 0;
@@ -313,9 +324,10 @@ header {
 }
 
 #main {
+    transition: opacity 1s .5s ease;
     & > div {
         border-bottom: 1px solid #999;
-        margin-bottom: 1em;
+        margin-bottom: 2em;
         &:last-of-type {
             margin-bottom: 0;
         }

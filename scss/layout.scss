@@ -3,16 +3,23 @@
 
 @import "bear_defaults";
 @media screen and (min-width: $mummy_bear_max_width + 2 * $leading) {
+
+	#mobile-check {
+		opacity: 0;
+	}
+
 	#container {
 		padding: 0 $leading;
 		margin: 0 auto;
 		max-width: $daddy_bear_max_width;
 		height: 100%;
 	}
+
 	header {
 		position: fixed;
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translateX(-7.5em - $leading/2);
+		transition: opacity 1s ease;
 		width: 100%;
 		max-width: $daddy_bear_max_width;
 		border: 0;
@@ -27,15 +34,18 @@
 			padding: 1em 0;
 		}
 	}
+
 	.responsive-header {
 		& > div {
 			position: static;
 			transform: none;
 		}
 	}
+
 	.responsive-header.scrolled {
 		position: fixed;
 	}
+
 	#main {
 		height: 100%;
 		margin-left: 15em + $leading;
@@ -88,17 +98,20 @@
 			opacity: .8;
 		}
 	}
+
 	.centered {
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 100%;
 	}
+
 	#about {
 		.centered {
 			top: 30%;
 		}
 	}
+
 	#skills {
 		.centered {
 			top: 20%;
@@ -107,6 +120,7 @@
 			width: 33%;
 		}
 	}
+
 	#projects {
 		.centered {
 			top: 15%;
@@ -164,6 +178,7 @@
 			}
 		}
 	}
+
 	@media (max-height: 30em) {
 		#main {
 			.pageup, .pagedown {
@@ -171,6 +186,7 @@
 			}
 		}
 	}
+
 	@media (max-height: 27em) {
 		#projects {
 			img {

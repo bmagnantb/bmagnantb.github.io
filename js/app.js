@@ -5,14 +5,22 @@ import Velocity from 'velocity-animate'
 import responsiveHeader from './responsiveHeader'
 import responsiveArrows from './responsiveArrows'
 import scrollArrows from './scrollArrows'
+import showArrowPopup from './showArrowPopup'
+
+import siteIntroAnimation from './siteIntroAnimation'
 
 window.onload = app
 
 function app() {
 
-	// values for arrow calculations
+	// for setting arrow functionality
 	var arrows = Array.prototype.slice.call(document.querySelectorAll('.arrow'))
 
+	// for setting header functionality
+	var header = document.querySelector('header')
+
+	// for intro animation
+	var main = document.querySelector('#main')
 
 	// set height on arrow containers for hover
 	responsiveArrows(arrows)
@@ -20,12 +28,13 @@ function app() {
 	// set scroll animations on arrows
 	scrollArrows(arrows)
 
-	// values for header calculations
-	var header = document.querySelector('header')
-
 	// initialize header calculations
 	responsiveHeader(header, header.children[0])
 
 	// everything set, show the site
-	document.body.style.opacity = 1;
+	siteIntroAnimation(header, main)
+
+	setTimeout(() => {
+		showArrowPopup(arrows)
+	}, 2000)
 }
