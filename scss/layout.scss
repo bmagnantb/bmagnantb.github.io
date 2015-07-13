@@ -122,20 +122,23 @@
 
 	.centered {
 		position: absolute;
+		margin: 0;
+		padding: 1.5em 0;
 		left: 50%;
-		transform: translateX(-50%);
+		top: 50%;
+		transform: translate(-50%, -50%);
 		width: 100%;
 	}
 
 	#about {
 		.centered {
-			top: 30%;
+			// top: 30%;
 		}
 	}
 
 	#skills {
 		.centered {
-			top: 20%;
+			// top: 20%;
 		}
 		ul {
 			width: 33%;
@@ -146,6 +149,7 @@
 	#projects {
 		.centered {
 			top: 15%;
+			transform: translateX(-50%);
 		}
 		li {
 			margin: 2.5em 0;
@@ -164,8 +168,7 @@
 			margin: .3em 0;
 			a {
 				transform: translate(-.3em, -35%);
-				opacity: 0;
-				transition: opacity .3s ease;
+				display: none;
 			}
 		}
 		label {
@@ -191,8 +194,7 @@
 					cursor: auto;
 				}
 				a {
-					opacity: 1;
-					transition: opacity .1s ease;
+					display: inline;
 				}
 			}
 			& ~ p {

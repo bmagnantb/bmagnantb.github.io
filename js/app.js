@@ -6,7 +6,6 @@ import Promise from 'bluebird'
 import responsiveHeader from './responsiveHeader'
 import scrollArrows from './scrollArrows'
 import showArrowPopup from './showArrowPopup'
-
 import siteIntroAnimation from './siteIntroAnimation'
 
 window.onload = app
