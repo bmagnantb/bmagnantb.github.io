@@ -1,8 +1,8 @@
 export default function scrollArrows(arrows) {
 	const UP_KEY = 38
 	const DOWN_KEY = 40
-	var animationAction = 'scroll'
-	var animationSettings = {duration: 600, easing: 'ease'}
+	const animationAction = 'scroll'
+	const animationSettings = {duration: 600, easing: 'ease'}
 
 	arrows.forEach(function(val) {
 		var clickTarget = val.children[0]

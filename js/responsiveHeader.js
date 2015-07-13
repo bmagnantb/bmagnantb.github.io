@@ -22,7 +22,6 @@ export default function responsiveHeader(header, headerDiv) {
 function setHeader(header, headerDiv, lastScrollTop) {
 	setHeaderClass(header, headerDiv)
 	if (header.classList.contains('responsive-header')) {
-		console.log(calcHeader(headerDiv, lastScrollTop))
 		headerDiv.style.marginTop = calcHeader(headerDiv, lastScrollTop)
 	}
 	return document.body.scrollTop

@@ -3,7 +3,7 @@ export default function responsiveArrows(arrows) {
 
 	setArrows(arrows)
 
-	document.addEventListener('resize', throttleSetArrows)
+	window.addEventListener('resize', throttleSetArrows)
 
 	function throttleSetArrows() {
 		if (running === false) {
