@@ -20,8 +20,8 @@ function isArrowVisible(arrow) {
 	return arrowRect.bottom >= arrowRect.height && arrowRect.bottom <= window.innerHeight
 }
 
+// get down arrow if available
 function getBestArrow(prev, curr) {
-	// get down arrow if available
 	return prev.classList.contains('pagedown') ? prev : curr
 }
 
@@ -46,15 +46,3 @@ function removePopup(arrow, HTML) {
 function stopBlinkArrow(arrow) {
 	Velocity(arrow, 'stop')
 }
-
-
-
-
-// animateArrowLoop()
-
-// var initialArrowHtml = arrow.innerHTML
-// arrow.innerHTML += '<div class="arrow-helper"><h6>Press keyboard arrows or click me<h6></div>'
-
-// arrow.innerHTML = initialArrowHTML
-// completeArrowLoop()
-
