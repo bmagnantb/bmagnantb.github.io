@@ -55,10 +55,10 @@
 			margin-bottom: 0;
 			position: relative;
 		}
-		.pageup,
-		.pagedown {
-			opacity: .4;
-			transition: opacity .3s ease;
+		.arrow {
+			min-height: 3em;
+			height: 15%;
+			max-height: 7em;
 			display: block;
 			padding: 0 .5em;
 			position: absolute;
@@ -67,6 +67,8 @@
 			width: 100%;
 
 			span {
+				opacity: .4;
+				transition: opacity .3s ease;
 				cursor: pointer;
 				border: 1px solid #333;
 				border-radius: 13%;
@@ -79,6 +81,10 @@
 			span {
 				margin-top: .5em;
 				padding: .5em;
+			}
+
+			.arrow-helper {
+				top: .6em;
 			}
 		}
 		.pagedown {
@@ -93,9 +99,23 @@
 				padding: .5em;
 				margin-bottom: .5em;
 			}
+
+			.arrow-helper {
+				bottom: .8em;
+			}
 		}
-		.pageup:hover, .pagedown:hover {
+		.arrow:hover span {
 			opacity: .8;
+		}
+		.arrow-helper {
+			opacity: 0;
+			position: absolute;
+			border: 1px solid #999;
+			border-radius: 6%;
+			max-height: 1.618em;
+			h6 {
+				padding: .258em .4em .36em;
+			}
 		}
 	}
 
@@ -124,10 +144,14 @@
 	#projects {
 		.centered {
 			top: 15%;
-			transform: translateX(-50%);
 		}
 		li {
 			margin: 2.5em 0;
+			h6,
+			p {
+				display: none;
+				opacity: 0;
+			}
 		}
 		img {
 			border: 1px solid #ccc;
@@ -148,11 +172,6 @@
 			border-radius: .1em;
 			transition: border .1s ease;
 			cursor: pointer;
-		}
-		h6,
-		p {
-			display: none;
-			opacity: 0;
 		}
 		input:checked {
 			& ~ img {

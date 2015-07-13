@@ -1,9 +1,9 @@
 "use strict"
 
 import Velocity from 'velocity-animate'
+import Promise from 'bluebird'
 
 import responsiveHeader from './responsiveHeader'
-import responsiveArrows from './responsiveArrows'
 import scrollArrows from './scrollArrows'
 import showArrowPopup from './showArrowPopup'
 
@@ -22,9 +22,6 @@ function app() {
 	// for intro animation
 	var main = document.querySelector('#main')
 
-	// set height on arrow containers for hover
-	responsiveArrows(arrows)
-
 	// set scroll animations on arrows
 	scrollArrows(arrows)
 
@@ -36,5 +33,5 @@ function app() {
 
 	setTimeout(() => {
 		showArrowPopup(arrows)
-	}, 2000)
+	}, 1300)
 }
