@@ -11,6 +11,7 @@ export default function scrollArrows(arrow$) {
 
 	// all up & down key presses
 	var arrowKeyPresse$ = Rx.Observable.fromEvent(window, 'keyup')
+		.throttleFirst(300)
 		.filter(evt => (evt.keyCode === UP_KEY || evt.keyCode === DOWN_KEY))
 
 	// destinations for each arrow
@@ -23,8 +24,8 @@ export default function scrollArrows(arrow$) {
 		})
 		.subscribe()
 
-	// animate on up arrow keypress
-	arrowKeyPresse$
+	// get scrollTo$ for up arrow keypresses
+	var upKeyScrollTo$ = arrowKeyPresse$
 		.filter(evt => evt.keyCode === UP_KEY)
 		.flatMap(evt => {
 			return scrollTo$
@@ -39,14 +40,9 @@ export default function scrollArrows(arrow$) {
 				})
 				.catch(Rx.Observable.just(false))
 		})
-		.scan((acc, scrollTo) => acc === scrollTo ? false : scrollTo)
-		.subscribe(scrollTo => {
-			console.log('scrolling to', scrollTo)
-			if (scrollTo) Velocity(scrollTo, 'scroll', scrollSettings)
-		})
 
-	// animate on down arrow keypresses
-	arrowKeyPresse$
+	// get scrollTo$ for down arrow keypresses
+	var downKeyScrollTo$ = arrowKeyPresse$
 		.filter(evt => evt.keyCode === DOWN_KEY)
 		.flatMap(evt => {
 			return scrollTo$
@@ -61,7 +57,10 @@ export default function scrollArrows(arrow$) {
 				})
 				.catch(Rx.Observable.just(false))
 		})
-		.scan((acc, scrollTo) => acc === scrollTo ? false : scrollTo)
+
+	// merge keypress scrollTo$, prevent repeated calls, animate
+	Rx.Observable.merge(upKeyScrollTo$, downKeyScrollTo$)
+		.distinctUntilChanged()
 		.subscribe(scrollTo => {
 			console.log('scrolling to', scrollTo)
 			if (scrollTo) Velocity(scrollTo, 'scroll', scrollSettings)
