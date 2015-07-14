@@ -13,7 +13,7 @@ window.onload = app
 function app() {
 
 	// for setting arrow functionality
-	var arrows = Array.prototype.slice.call(document.querySelectorAll('.arrow'))
+	var arrows = document.querySelectorAll('.arrow')
 
 	// for setting header functionality
 	var header = document.querySelector('header')
