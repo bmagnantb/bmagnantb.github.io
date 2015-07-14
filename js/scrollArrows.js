@@ -1,11 +1,9 @@
 import Rx from 'rx'
 
-export default function scrollArrows(arrows) {
+export default function scrollArrows(arrow$) {
 	const UP_KEY = 38
 	const DOWN_KEY = 40
 	const scrollSettings = {duration: 600, easing: 'ease'}
-
-	var arrow$ = Rx.Observable.from(arrows)
 
 	// observable of observables
 	// each observable represents click events on a certain arrow

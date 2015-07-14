@@ -1,8 +1,4 @@
-import Rx from 'rx'
-
-export default function showArrowPopup(arrows) {
-	var arrow$ = Rx.Observable.from(arrows)
-
+export default function showArrowPopup(arrow$) {
 	arrow$
 		.filter(isArrowVisible)
 		.reduce(getBestArrow)

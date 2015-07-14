@@ -2,6 +2,7 @@
 
 import Velocity from 'velocity-animate'
 import Promise from 'bluebird'
+import Rx from 'rx'
 
 import responsiveHeader from './responsiveHeader'
 import scrollArrows from './scrollArrows'
@@ -13,7 +14,7 @@ window.onload = app
 function app() {
 
 	// for setting arrow functionality
-	var arrows = document.querySelectorAll('.arrow')
+	var arrow$ = Rx.Observable.from(document.querySelectorAll('.arrow'))
 
 	// for setting header functionality
 	var header = document.querySelector('header')
@@ -22,7 +23,7 @@ function app() {
 	var main = document.querySelector('#main')
 
 	// set scroll animations on arrows
-	scrollArrows(arrows)
+	scrollArrows(arrow$)
 
 	// initialize header calculations
 	responsiveHeader(header, header.children[0])
@@ -30,5 +31,5 @@ function app() {
 	// everything set, show the site
 	siteIntroAnimation(header, main)
 
-	showArrowPopup(arrows)
+	showArrowPopup(arrow$)
 }
