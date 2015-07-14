@@ -5,7 +5,7 @@ import isMobileMediaQueries from './isMobileMediaQueries'
 export default function showArrowPopup(arrow$) {
 	var start$ = Rx.Observable.just(isMobileMediaQueries())
 
-	// if mobile, set listener for resize to desktop, show arrow then
+	// if mobile, set listener for resize to desktop, show arrow on change
 	start$.filter(isMobile => isMobile)
 		.do(desktopListener)
 		.subscribe()
@@ -28,7 +28,7 @@ export default function showArrowPopup(arrow$) {
 	}
 
 	function desktopListener() {
-		var dispose = Rx.Observable.fromEvent(window, 'resize').debounce(700)
+		var dispose = Rx.Observable.fromEvent(window, 'resize').debounce(500)
 			.map(resize => isMobileMediaQueries())
 			.filter(isMobile => !isMobile)
 			.do(render)
