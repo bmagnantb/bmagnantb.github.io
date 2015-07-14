@@ -1,17 +1,18 @@
-export default function showArrowPopup(arrows) {
-	var arrow = getArrow(arrows)
-	var initialHTML = addPopup(arrow)
-	blinkArrow(arrow.firstElementChild)
-	setTimeout(() => {
-		Velocity(arrow.lastElementChild, {opacity: 0}, {duration: 300, easing: 'ease'})
-		stopBlinkArrow(arrow.firstElementChild)
-	}, 6000)
-}
+import Rx from 'rx'
 
-function getArrow(arrows) {
-	return Array.prototype.slice.call(arrows)
+export default function showArrowPopup(arrows) {
+	var arrow$ = Rx.Observable.from(arrows)
+
+	arrow$
+		.doOnNext(arrow => console.log(arrow))
 		.filter(isArrowVisible)
 		.reduce(getBestArrow)
+		.do(arrow => console.log(arrow))
+		.do(blinkArrow)
+		.do(addPopup)
+		.delay(6000)
+		.do(removePopup)
+		.subscribe(stopBlinkArrow)
 }
 
 // get arrows that are fully in view
@@ -26,8 +27,7 @@ function getBestArrow(prev, curr) {
 }
 
 function blinkArrow(arrow) {
-	var initialOpacity = window.getComputedStyle(arrow).opacity
-	Velocity(arrow, {opacity: 1}, {duration: 600, easing: 'ease', loop: true})
+	Velocity(arrow.firstElementChild, {opacity: 1}, {duration: 600, easing: 'ease', loop: true})
 }
 
 function addPopup(arrow) {
@@ -36,6 +36,10 @@ function addPopup(arrow) {
 	Velocity(popup, {opacity: [1, 0], left: [.56 * arrow.parentNode.clientWidth, window.innerWidth]}, {duration: 400, easing: 'ease'})
 }
 
+function removePopup(arrow) {
+	Velocity(arrow.lastElementChild, {opacity: 0}, {duration: 300, easing: 'ease'})
+}
+
 function stopBlinkArrow(arrow) {
-	Velocity(arrow, 'stop')
+	Velocity(arrow.firstElementChild, 'stop')
 }
