@@ -1,57 +1,56 @@
 import Velocity from 'velocity-animate'
+import Rx from 'rx'
 
 import isMobileMediaQueries from './isMobileMediaQueries'
 
 export default function siteIntroAnimation(header, main) {
 
-	if (isMobileMediaQueries()) {
-		return mobileAnimation(header, main)
-	}
+	var resize$ = Rx.Observable.fromEvent(window, 'resize')
+		.throttleFirst(16)
+		.map(evt => isMobileMediaQueries())
+	var desktopResize$ = resize$
+		.filter(isMobile => !isMobile)
+	var mobileResize$ = resize$
+		.filter(isMobile => isMobile)
 
-	header.classList.remove('invisible')
+	var start$ = Rx.Observable.just(isMobileMediaQueries())
+		.do(() => header.classList.remove('invisible'))
 
-	var headerTranslateX = -.5 * header.scrollWidth
+	// mobile start
+	var mobileStart$ = start$.filter(isMobile => isMobile)
 
-	setTimeout(() => {
-		Velocity.hook(header, 'translateX', '-8.309em')
-		Velocity(header, {translateX : headerTranslateX}, 1000)
-		addDesktopResizeListener()
-		main.classList.remove('invisible')
-	}, 500)
-
-
-
-	function throttleSetHeader() {
-		requestAnimationFrame(function setHeader() {
-			if (isMobileMediaQueries()) {
-				return addMobileResizeListener()
-			}
-			headerTranslateX = -.5 * header.scrollWidth
-			header.style.transform = `translateX(${headerTranslateX}px)`
+	// desktop start
+	var desktopStart$ = start$.filter(isMobile => !isMobile)
+		.map(getHeaderTranslate)
+		.delay(500)
+		.do(translateX => {
+			Velocity.hook(header, 'translateX', '-8.309em')
+			Velocity(header, {translateX}, 1000)
 		})
+
+	var introEnd$ = Rx.Observable.merge(mobileStart$, desktopStart$)
+		.do(() => main.classList.remove('invisible'))
+		.doOnCompleted(setResizeListeners)
+		.subscribe()
+
+
+	function getHeaderTranslate() {
+		return -.5 * header.scrollWidth
 	}
 
-	function mobileAnimation() {
-		header.classList.remove('invisible')
-		main.classList.remove('invisible')
-		addMobileResizeListener()
+	function setResizeListeners() {
+		desktopResize$
+			.map(getHeaderTranslate)
+			.do(setHeader)
+			.subscribe(next => console.log('desktopResize next'))
+
+		mobileResize$
+			.do(() => header.style.transform = '')
+			.subscribe(next => console.log('mobileResize next'))
 	}
 
-	function isDesktop() {
-		if (!isMobileMediaQueries()) {
-			throttleSetHeader()
-			addDesktopResizeListener()
-		}
-	}
-
-	function addDesktopResizeListener() {
-		window.removeEventListener('resize', isDesktop)
-		window.addEventListener('resize', throttleSetHeader)
-	}
-
-	function addMobileResizeListener() {
-		header.style.transform = ''
-		window.removeEventListener('resize', throttleSetHeader)
-		window.addEventListener('resize', isDesktop)
+	function setHeader(translateX) {
+		translateX = -.5 * header.scrollWidth
+		header.style.transform = `translateX(${translateX}px)`
 	}
 }

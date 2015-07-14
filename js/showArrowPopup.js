@@ -4,10 +4,9 @@ export default function showArrowPopup(arrows) {
 	var arrow$ = Rx.Observable.from(arrows)
 
 	arrow$
-		.doOnNext(arrow => console.log(arrow))
 		.filter(isArrowVisible)
 		.reduce(getBestArrow)
-		.do(arrow => console.log(arrow))
+		.delay(1500)
 		.do(blinkArrow)
 		.do(addPopup)
 		.delay(6000)

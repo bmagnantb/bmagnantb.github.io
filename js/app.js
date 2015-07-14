@@ -30,7 +30,5 @@ function app() {
 	// everything set, show the site
 	siteIntroAnimation(header, main)
 
-	setTimeout(() => {
-		showArrowPopup(arrows)
-	}, 1300)
+	showArrowPopup(arrows)
 }
