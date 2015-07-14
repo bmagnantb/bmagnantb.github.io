@@ -1,13 +1,40 @@
+import Rx from 'rx'
+
+import isMobileMediaQueries from './isMobileMediaQueries'
+
 export default function showArrowPopup(arrow$) {
-	arrow$
-		.filter(isArrowVisible)
-		.reduce(getBestArrow)
-		.delay(1500)
-		.do(blinkArrow)
-		.do(addPopup)
-		.delay(6000)
-		.do(removePopup)
-		.subscribe(stopBlinkArrow)
+	var start$ = Rx.Observable.just(isMobileMediaQueries())
+
+	// if mobile, set listener for resize to desktop, show arrow then
+	start$.filter(isMobile => isMobile)
+		.do(desktopListener)
+		.subscribe()
+
+	// if desktop, show the popup
+	start$.filter(isMobile => !isMobile)
+		.do(render)
+		.subscribe()
+
+	function render() {
+		arrow$
+			.filter(isArrowVisible)
+			.reduce(getBestArrow)
+			.delay(1500)
+			.do(blinkArrow)
+			.do(addPopup)
+			.delay(6000)
+			.do(removePopup)
+			.subscribe(stopBlinkArrow)
+	}
+
+	function desktopListener() {
+		var dispose = Rx.Observable.fromEvent(window, 'resize').debounce(700)
+			.map(resize => isMobileMediaQueries())
+			.filter(isMobile => !isMobile)
+			.do(render)
+			.do(dispose)
+			.subscribe()
+	}
 }
 
 // get arrows that are fully in view
