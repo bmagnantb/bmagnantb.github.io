@@ -5,14 +5,12 @@ import isMobileMediaQueries from './isMobileMediaQueries'
 
 export default function siteIntroAnimation(header, main) {
 
+	// listen for all resizes
 	var resize$ = Rx.Observable.fromEvent(window, 'resize')
 		.throttleFirst(16)
 		.map(evt => isMobileMediaQueries())
-	var desktopResize$ = resize$
-		.filter(isMobile => !isMobile)
-	var mobileResize$ = resize$
-		.filter(isMobile => isMobile)
 
+	// kick off the animation
 	var start$ = Rx.Observable.just(isMobileMediaQueries())
 		.do(() => header.classList.remove('invisible'))
 
@@ -28,25 +26,28 @@ export default function siteIntroAnimation(header, main) {
 			Velocity(header, {translateX}, 1000)
 		})
 
+	// mobile and desktop animation ends the same
+	// merge them and finish
 	var introEnd$ = Rx.Observable.merge(mobileStart$, desktopStart$)
 		.do(() => main.classList.remove('invisible'))
 		.doOnCompleted(setResizeListeners)
 		.subscribe()
 
-
-	function getHeaderTranslate() {
-		return -.5 * header.scrollWidth
-	}
-
 	function setResizeListeners() {
-		desktopResize$
+		resize$
+			.filter(isMobile => !isMobile)
 			.map(getHeaderTranslate)
 			.do(setHeader)
 			.subscribe(next => console.log('desktopResize next'))
 
-		mobileResize$
+		resize$
+			.filter(isMobile => isMobile)
 			.do(() => header.style.transform = '')
 			.subscribe(next => console.log('mobileResize next'))
+	}
+
+	function getHeaderTranslate() {
+		return -.5 * header.scrollWidth
 	}
 
 	function setHeader(translateX) {

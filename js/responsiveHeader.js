@@ -50,10 +50,11 @@ function calcHeader(headerDiv, lastScrollTop) {
 	// change in position since last scroll event
 	var scrollTopChange = document.body.scrollTop - lastScrollTop
 
-	// margin applied to header
+	// margin currently applied to header
 	var headerDivMargin = headerDiv.style.marginTop.substr(0, headerDiv.style.marginTop.length - 2)
 
-	// if scrolled down and headerDivMargin is less than non-visible portion of headerDiv
+	// if scrolled down and headerDivMargin is less than
+	// non-visible portion of headerDiv (headerDivHeight - windowHeight)
 	if (scrollTopChange > 0 && (headerDivMargin < (headerDiv.scrollHeight - window.innerHeight))) {
 		return Math.abs(headerDivMargin - scrollTopChange) <= (headerDiv.scrollHeight - window.innerHeight)
 			? (headerDivMargin - scrollTopChange + 'px')

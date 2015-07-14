@@ -26,8 +26,8 @@ export default function scrollArrows(arrow$) {
 	// animate on up arrow keypress
 	arrowKeyPresse$
 		.filter(evt => evt.keyCode === UP_KEY)
-		.subscribe(evt => {
-			scrollTo$
+		.flatMap(evt => {
+			return scrollTo$
 				.distinct()
 				.filter(scrollTo => {
 					return scrollTo.getBoundingClientRect().top < 0
@@ -37,28 +37,34 @@ export default function scrollArrows(arrow$) {
 						? acc
 						: scrollTo
 				})
-				.subscribe(scrollTo => {
-					Velocity(scrollTo, 'scroll', scrollSettings)
-				})
+				.catch(Rx.Observable.just(false))
+		})
+		.scan((acc, scrollTo) => acc === scrollTo ? false : scrollTo)
+		.subscribe(scrollTo => {
+			console.log('scrolling to', scrollTo)
+			if (scrollTo) Velocity(scrollTo, 'scroll', scrollSettings)
 		})
 
 	// animate on down arrow keypresses
 	arrowKeyPresse$
 		.filter(evt => evt.keyCode === DOWN_KEY)
-		.subscribe(evt => {
-			scrollTo$
+		.flatMap(evt => {
+			return scrollTo$
 				.distinct()
 				.filter(scrollTo => {
-					return scrollTo.getBoundingClientRect().top >= 0
+					return scrollTo.getBoundingClientRect().top > 0
 				})
 				.reduce((acc, scrollTo) => {
 					return acc.getBoundingClientRect().top < scrollTo.getBoundingClientRect().top
 						? acc
 						: scrollTo
 				})
-				.subscribe(scrollTo => {
-					Velocity(scrollTo, 'scroll', scrollSettings)
-				})
+				.catch(Rx.Observable.just(false))
+		})
+		.scan((acc, scrollTo) => acc === scrollTo ? false : scrollTo)
+		.subscribe(scrollTo => {
+			console.log('scrolling to', scrollTo)
+			if (scrollTo) Velocity(scrollTo, 'scroll', scrollSettings)
 		})
 }
 
@@ -66,6 +72,7 @@ function getClickEvents(clickTarget) {
 	return Rx.Observable.fromEvent(clickTarget, 'click')
 }
 
+// get scroll target of arrow
 function getScrollTo(arrow) {
 	var mainDiv = arrow.parentNode.parentNode
 	var directParent = arrow.parentNode
