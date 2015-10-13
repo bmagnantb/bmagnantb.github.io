@@ -1,7 +1,6 @@
 "use strict"
 
 import Velocity from 'velocity-animate'
-import Promise from 'bluebird'
 import Rx from 'rx'
 
 import responsiveHeader from './responsiveHeader'
