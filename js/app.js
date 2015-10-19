@@ -1,5 +1,3 @@
-"use strict"
-
 import Velocity from 'velocity-animate'
 import Rx from 'rx'
 
@@ -7,6 +5,8 @@ import responsiveHeader from './responsiveHeader'
 import scrollArrows from './scrollArrows'
 import showArrowPopup from './showArrowPopup'
 import siteIntroAnimation from './siteIntroAnimation'
+
+import '../scss/style.scss'
 
 window.onload = app
 
