@@ -1,39 +1,17 @@
 {
-  "name": "Portfolio",
+  "name": "portfolio",
   "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "test": "mocha ./js/test/test.js; echo '------tested------'",
-    "start": "webpack-dev-server",
-    "build": "webpack"
-  },
+  "main": "",
   "repository": {
     "type": "git",
     "url": "https://github.com/bmagnantb/portfolio.git"
   },
-  "author": "Ben Magnant Brown",
-  "license": "ISC",
+  "author": "ben magnant brown",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bmagnantb/portfolio/issues"
   },
-  "homepage": "https://github.com/bmagnantb/portfolio",
-  "devDependencies": {
-    "babel-core": "^5.8.25",
-    "babel-loader": "^5.3.2",
-    "css-loader": "^0.20.1",
-    "express": "^4.12.3",
-    "node-sass": "^3.3.3",
-    "postcss": "^5.0.10",
-    "postcss-loader": "^0.7.0",
-    "sass-loader": "^3.0.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1"
-  },
+  "homepage": "https://bmagnantb.github.io/",
   "dependencies": {
-    "autoprefixer": "^6.0.3",
-    "extract-text-webpack-plugin": "^0.8.2",
-    "rx": "^2.5.3",
-    "style-loader": "^0.12.4",
-    "velocity-animate": "^1.2.3"
   }
 }
