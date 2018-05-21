@@ -11,12 +11,12 @@ const H1 = styled.h1`
 const Hero = () => (
   <div>
     <Row>
-      <Column push={2} size={8}>
+      <Column xs={10} push={1} lg={4} pushLg={2}>
         <H1>App</H1>
       </Column>
     </Row>
     <Row>
-      <Column push={2} size={8}>
+      <Column xs={10} push={1} lg={4} pushLg={2}>
         <p>Lorem ipsum...</p>
       </Column>
     </Row>
