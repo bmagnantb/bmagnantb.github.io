@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { Row, Column } from '../grid'
-import { heading } from '../type'
+import { heading } from '../typography'
 
 const H1 = styled.h1`
   ${heading};
