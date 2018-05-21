@@ -7,8 +7,12 @@ module.exports = {
   output: { path: __dirname + '/build', filename: 'bundle.js' },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.(css)$/, loader: 'style-loader!css-loader'}
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [ 'babel-loader', 'eslint-loader' ]
+      },
+      { test: /\.(css)$/, use: [ 'style-loader', 'css-loader' ] }
     ]
   },
   plugins: [
