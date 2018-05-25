@@ -1,23 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
 
 import { Row, Column } from '../grid'
-import { heading } from '../typography'
-
-const H1 = styled.h1`
-  ${heading};
-`
+import { Text } from '../typography'
 
 const Hero = () => (
   <div>
     <Row>
       <Column xs={10} push={1} lg={4} pushLg={2}>
-        <H1>App</H1>
+        <Text Element={'h1'}>App lorem ipsum</Text>
       </Column>
     </Row>
     <Row>
       <Column xs={10} push={1} lg={4} pushLg={2}>
-        <p>Lorem ipsum...</p>
+        <Text>Lorem ipsum...</Text>
       </Column>
     </Row>
   </div>

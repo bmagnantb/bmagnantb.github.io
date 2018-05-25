@@ -1,1 +1,1 @@
-export { default as heading } from './headingMixin'
+export { default as Text } from './Text'
